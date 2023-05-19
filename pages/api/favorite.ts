@@ -38,7 +38,7 @@ export default async function handler(
 
     if (req.method === 'DELETE') {
       const { currentUser } = await serverAuth(req, res);
-      const { movieId } = req.query;
+      const movieId = String(req.query.movieId);
   
       const existingMovie = await prismadb.movie.findUnique({
         where: {
