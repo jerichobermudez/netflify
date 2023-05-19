@@ -13,3 +13,17 @@ body {
 html {
   @apply h-full;
 }
+
+.custom-text-color {
+  color: #33a863 !important;
+}
+
+.custom-background-color {
+  --tw-bg-opacity: 1;
+  background: #33a863 !important;
+}
+
+.hover\:custom-background-color:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+}
