@@ -1,23 +1,17 @@
-import React, { useCallback } from "react";
-import { BsFillPlayFill } from "react-icons/bs"
+import React from "react";
 import FavoriteButton from "./FavoriteButton";
-// import { useRouter } from 'next/router';
-// import { ChevronDownIcon } from '@heroicons/react/24/outline';
-// import { PlayIcon } from '@heroicons/react/24/solid';
-
-// import { MovieInterface } from '@/types';
-// import FavoriteButton from '@/components/FavoriteButton';
-// import useInfoModalStore from '@/hooks/useInfoModalStore';
+import { useRouter } from 'next/router';
+import useInfoModal from "@/hooks/useInfoModal";
+import { BsFillPlayFill } from "react-icons/bs"
+import { BiChevronDown } from "react-icons/bi";
 
 interface MovieCardProps {
   data: Record<string, any>;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
-  // const router = useRouter();
-  // const { openModal } = useInfoModalStore();
-
-  // const redirectToWatch = useCallback(() => router.push(`/watch/${data.id}`), [router, data.id]);
+  const router = useRouter();
+  const { openModal } = useInfoModal();
 
   return (
     <div className="
@@ -28,7 +22,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
       h-[12vw]
     ">
       <img
-        onClick={() => {}}
+        onClick={() => router.push(`/watch/${data?.id}`)}
         src={data.thumbnailUrl}
         alt="Movie"
         draggable={false}
@@ -64,7 +58,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         group-hover:opacity-100
       ">
         <img
-          onClick={() => {}}
+          onClick={() => router.push(`/watch/${data?.id}`)}
           src={data.thumbnailUrl}
           alt="Movie"
           draggable={false}
@@ -92,7 +86,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         ">
           <div className="flex flex-row items-center gap-3">
             <div
-              onClick={() => {}}
+              onClick={() => router.push(`/watch/${data?.id}`)}
               className="
                 cursor-pointer
                 w-6
@@ -112,7 +106,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
             </div>
             <FavoriteButton movieId={data?.id} />
             <div
-              onClick={() => {}}
+              onClick={() => openModal(data?.id)}
               className="
                 cursor-pointer
                 ml-auto
@@ -131,7 +125,10 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
                 hover:border-neutral-300
               "
             >
-              {/* <ChevronDownIcon className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6" /> */}
+              <BiChevronDown
+                size={30}
+                className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6"
+              />
             </div>
           </div>
           <p className="text-green-400 font-semibold mt-4">
